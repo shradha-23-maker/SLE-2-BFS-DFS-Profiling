@@ -1,206 +1,80 @@
-\# SLE-2: BFS and DFS Profiling
+# Algorithmic Profiling: BFS vs. DFS Search
 
+An empirical profiling project comparing Breadth-First Search (BFS) and Depth-First Search (DFS) using execution time, nodes explored, `timeit`, and `py-spy`.
 
+---
 
-\## Course
+## 📌 Overview
 
-02AML204 – Introduction to Artificial Intelligence
+- **Course:** 02AML204 – Introduction to Artificial Intelligence
+- **Author:** Shradha Dhananjay Kumbhar (PRN: 25UAM030)
+- **Problem Domain:** Graph search
+- **Graph Size:** 12 nodes
+- **Start Node:** A
+- **Search Algorithms:** BFS and DFS
+- **Profiling Tools:** `timeit` and `py-spy`
 
+Both algorithms were implemented as separate Python programs and tested on the same graph and set of goal nodes.
 
+---
 
-\## Student Details
-
-
-
-\- \*\*Name:\*\* Shradha Dhananjay Kumbhar
-
-\- \*\*PRN:\*\* 25UAM030
-
-\- \*\*Division:\*\* A
-
-\- \*\*Date:\*\* 22 September 2026
-
-
-
-\## Objective
-
-
-
-The objective of this SLE-2 task is to empirically compare the performance of Breadth-First Search (BFS) and Depth-First Search (DFS).
-
-
-
-The comparison is based on:
-
-
-
-\- Execution time
-
-\- Number of nodes explored
-
-\- Profiling using py-spy
-
-
-
-\## Algorithms Used
-
-
-
-\### 1. Breadth-First Search (BFS)
-
-
-
-BFS explores the graph level by level using a queue.
-
-
-
-Program:
-
-
-
-`bfs.py`
-
-
-
-\### 2. Depth-First Search (DFS)
-
-
-
-DFS explores the graph by going as deep as possible before backtracking. It uses a stack.
-
-
-
-Program:
-
-
-
-`dfs.py`
-
-
-
-\## Problem Used
-
-
-
-Both algorithms were tested on the same 12-node graph.
-
-
-
-\- Start node: `A`
-
-\- Goal nodes: `A` to `L`
-
-\- Number of nodes: 12
-
-
-
-Using the same graph and goals makes the comparison fair.
-
-
-
-\## Profiling Method
-
-
-
-The following methods were used:
-
-
-
-\- `timeit` for execution-time measurement
-
-\- Manual node counting for nodes explored
-
-\- `py-spy` for profiling and flame graphs
-
-\- 1000 runs were used for timing each goal
-
-
-
-\## Results
-
-
+## 📊 Performance Comparison
 
 | Metric | BFS | DFS |
-
 |---|---:|---:|
-
-| Average Nodes Explored | 6.5 | 6.5 |
-
 | Average Time | 2.1641 µs | 2.3998 µs |
-
+| Average Nodes Explored | 6.5 | 6.5 |
 | Worst-Case Time | 3.5306 µs | 4.2753 µs |
-
 | py-spy Samples | 4 | 13 |
-
 | py-spy Errors | 0 | 0 |
 
+### Key Observations
 
+- BFS recorded a lower average measured execution time than DFS in this experiment.
+- Both algorithms explored the same average number of nodes: **6.5**.
+- BFS also recorded a lower measured worst-case time in this experiment.
+- The measured execution time is specific to this graph, implementation, and system environment.
+- The results should not be treated as a universal statement that BFS is always faster than DFS.
+- `py-spy` was used to generate flame graphs showing sampled CPU execution activity.
 
-\## Observation
+---
 
+## 🚀 How to Run
 
+### 1. Install py-spy
 
-In this experiment, BFS recorded a lower average execution time than DFS.
+```text
+pip install py-spy
 
+2. Run BFS
+python bfs.py
+3. Profile BFS
+py-spy record -o bfs_profile.svg -- python bfs.py
+4. Run DFS
+python dfs.py
+5. Profile DFS
+py-spy record -o dfs_profile.svg -- python dfs.py
+6. View the Flame Graphs
 
+Open the following SVG files in a web browser:
 
-Both algorithms explored the same average number of nodes: 6.5.
+bfs_profile.svg
+dfs_profile.svg
+📁 Repository Contents
+bfs.py — BFS implementation with execution-time and node-count measurement.
+dfs.py — DFS implementation with execution-time and node-count measurement.
+bfs_profile.svg — py-spy profiling output for BFS.
+dfs_profile.svg — py-spy profiling output for DFS.
+contribution_log.md — Contribution and AI usage log.
+README.md — Project documentation.
+🤖 AI Contribution
 
+ChatGPT was used to understand the SLE-2 requirements, organize the profiling procedure, explain the BFS and DFS programs, interpret the collected results, and prepare the documentation.
 
+The programs were edited and executed locally. The profiling experiments were performed, results were collected, the py-spy flame graphs were generated, and the final evidence was checked by the student.
 
-The measured result depends on the graph structure, node ordering, and system conditions.
+📝 Conclusion
 
+BFS and DFS were implemented as separate programs and evaluated on the same 12-node graph. Execution time and the number of explored nodes were measured using the same experimental setup.
 
-
-\## Profiling Graphs
-
-
-
-\### BFS Flame Graph
-
-
-
-!\[BFS Profile](bfs\_profile.svg)
-
-
-
-\### DFS Flame Graph
-
-
-
-!\[DFS Profile](dfs\_profile.svg)
-
-
-
-\## Files
-
-
-
-\- `bfs.py` – BFS implementation and profiling
-
-\- `dfs.py` – DFS implementation and profiling
-
-\- `bfs\_profile.svg` – BFS py-spy flame graph
-
-\- `dfs\_profile.svg` – DFS py-spy flame graph
-
-
-
-\## AI Contribution
-
-
-
-ChatGPT was used to understand the SLE-2 guideline, organize the profiling procedure, understand the BFS and DFS code and results, and prepare the report structure.
-
-
-
-The programs were edited and executed locally, profiling experiments were performed, results were collected, py-spy flame graphs were generated, and the evidence was checked by the student.
-
-
-
-\## Conclusion
-
-
-
-BFS and DFS were implemented as separate programs and tested on the same 12-node graph. Execution time and nodes explored were measured, and py-spy was used to generate profiling flame graphs. In this experiment, BFS recorded a lower average execution time, while both algorithms explored the same average number of nodes.
-
+For this particular experiment, BFS recorded a lower average measured execution time than DFS, while both algorithms explored the same average number of nodes. The results provide an empirical comparison of BFS and DFS under the selected test conditions.
